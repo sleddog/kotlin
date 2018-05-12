@@ -1,3 +1,6 @@
+projecteuler/.idea/*
+projecteuler/out/*
+
 # Compiled class file
 *.class
 
