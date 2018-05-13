@@ -4,57 +4,16 @@ package projecteuler
 //
 //What is the largest prime factor of the number 600851475143 ?
 
-fun problem3(number : Int) : Int {
-    //return max(factors(number))
-    return max(primeFactors(number))
-}
+import kotlin.math.sqrt
 
-fun max(ints : IntArray) : Int {
-    //return ints.max() ?? TODO
+fun problem3(number : Long) : Long {
+    var start = sqrt(number.toDouble()).toLong()
+    for (i in start downTo 3) {
 
-    var max = 0
-    for (i in ints) {
-        if (i >= max) {
-            max = i
+        if (isPrime(i) && number % i == 0L ) {
+            return i
         }
     }
-    return max
+    return -1
 }
 
-fun factors(number : Int) : IntArray {
-    //val arrayList = intArrayOf(1, 2, 5).toCollection(ArrayList())
-    var myList: MutableList<Int> = mutableListOf<Int>()
-
-
-    for (i in 1..number/2) {
-        for (j in 1..number/2) {
-            if (i * j == number) {
-                myList.add(i)
-                myList.add(i)
-            }
-        }
-    }
-
-
-    return myList.toIntArray()
-}
-
-fun primeFactors(number : Int) : IntArray {
-    var factors = factors(number)
-    var primes: MutableList<Int> = mutableListOf<Int>()
-    for (f in factors) {
-        if (isPrime(f)) {
-           primes.add(f)
-        }
-    }
-    return primes.toIntArray()
-}
-
-fun isPrime(number : Int) : Boolean {
-    for (i in 2 until number/2) {
-        if (number % i == 0) {
-            return false
-        }
-    }
-    return true
-}
